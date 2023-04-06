@@ -24,6 +24,7 @@ CONF_BLE_CHARACTERISTICS = "characteristics"
 CONF_BLE_CHARACTERISTIC = "characteristic"
 CONF_BLE_USE_2902 = "use_BLE2902"
 CONF_EXPOSES_COMPONENT = "exposes"
+CONF_FORMAT_COMPONENT = "format"
 
 def validate_UUID(value):
     # print("UUID«", value)
@@ -87,7 +88,7 @@ SECURTY_MODE_OPTIONS = {
     CONF_SECURITY_MODE_SECURE: BLESecurityMode.SECURE,
 }
 
-# authetication and (dis)connected automations #####
+# authentication and (dis)connected automations #####
 CONF_ON_SHOW_PASS_KEY = "on_show_pass_key"
 BLEControllerShowPassKeyTrigger = esp32_ble_controller_ns.class_('BLEControllerShowPassKeyTrigger', automation.Trigger.template())
 
