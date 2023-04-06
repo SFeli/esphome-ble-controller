@@ -255,7 +255,8 @@ void ESP32BLEController::register_state_change_callbacks_and_send_initial_states
 #ifdef USE_SENSOR
   for (auto *obj : App.get_sensors()) {
     if (info_for_component.count(obj->get_object_id())) {
-      obj->add_on_state_callback([this, obj](float state) { this->on_sensor_update(obj, state); });
+      //obj->add_on_state_callback([this, obj](float state) { this->on_sensor_update(obj, state); });
+      obj->add_on_state_callback([this, obj](int32 state) { this->on_sensor_update(obj, state); });
       if (obj->has_state())
         update_component_state(obj, obj->state);
     }
@@ -386,7 +387,8 @@ void ESP32BLEController::send_command_result(const char* format, ...) {
   void ESP32BLEController::on_light_update(light::LightState *obj) {}
 #endif
 #ifdef USE_SENSOR
-  void ESP32BLEController::on_sensor_update(sensor::Sensor *component, float state) { update_component_state(component, state); }
+  // void ESP32BLEController::on_sensor_update(sensor::Sensor *component, float state) { update_component_state(component, state); }
+  void ESP32BLEController::on_sensor_update(sensor::Sensor *component, int32 state) { update_component_state(component, state); }
 #endif
 #ifdef USE_SWITCH
   void ESP32BLEController::on_switch_update(switch_::Switch *obj, bool state) { update_component_state(obj, state); }
