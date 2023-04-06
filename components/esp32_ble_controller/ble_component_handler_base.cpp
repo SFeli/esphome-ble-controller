@@ -46,7 +46,7 @@ void BLEComponentHandlerBase::setup(BLEServer* ble_server) {
 
 void BLEComponentHandlerBase::send_value(float value) {
   const string& object_id = component->get_object_id();
-  ESP_LOGD(TAG, "Update component %s to %f", object_id.c_str(), value);
+  ESP_LOGD(TAG, "SF_Update component %s to %f", object_id.c_str(), value);
 
   characteristic->setValue(value);
   characteristic->notify();
