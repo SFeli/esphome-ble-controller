@@ -123,8 +123,7 @@ private:
   void on_light_update(light::LightState *obj);
 #endif
 #ifdef USE_SENSOR
-  /// void on_sensor_update(sensor::Sensor *obj, float state);
-  void on_sensor_update(sensor::Sensor *obj, int16 state);
+  void on_sensor_update(sensor::Sensor *obj, float state);
 #endif
 #ifdef USE_SWITCH
   void on_switch_update(switch_::Switch *obj, bool state);
