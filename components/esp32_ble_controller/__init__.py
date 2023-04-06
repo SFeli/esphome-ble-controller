@@ -38,6 +38,7 @@ BLE_CHARACTERISTIC = cv.Schema({
     cv.Required("characteristic"): validate_UUID,
     cv.GenerateID(CONF_EXPOSES_COMPONENT): cv.use_id(cg.EntityBase), # TASK validate that only supported EntityBase instances are referenced
     cv.Optional(CONF_BLE_USE_2902, default=True): cv.boolean,
+    cv.Optional(CONF_FORMAT_COMPONENT, default='16_2'): cv.char[5],
 })
 
 BLE_SERVICE = cv.Schema({
