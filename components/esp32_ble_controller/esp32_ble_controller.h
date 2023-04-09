@@ -46,7 +46,7 @@ public:
 
   // pre-setup configurations
 
-  void register_component(EntityBase* component, const string& service_UUID, const string& characteristic_UUID, bool use_BLE2902 = true);
+  void register_component(EntityBase* component, const string& service_UUID, const string& characteristic_UUID, bool use_BLE2902 = true, const string& GATT_Format);
 
   void register_command(const string& name, const string& description, BLEControllerCustomCommandExecutionTrigger* trigger);
   const vector<BLECommand*>& get_commands() const;
