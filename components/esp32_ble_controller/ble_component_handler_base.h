@@ -18,6 +18,7 @@ struct BLECharacteristicInfoForHandler {
   string service_UUID;
   string characteristic_UUID;
   bool use_BLE2902;
+  string GITT_Format;
 };
 
 /**
