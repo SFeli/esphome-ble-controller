@@ -25,7 +25,7 @@ ESP32BLEController::ESP32BLEController() : maintenance_handler(new BLEMaintenanc
 
 /// pre-setup configuration ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void ESP32BLEController::register_component(EntityBase* component, const string& serviceUUID, const string& characteristic_UUID, bool use_BLE2902) {
+void ESP32BLEController::register_component(EntityBase* component, const string& serviceUUID, const string& characteristic_UUID, bool use_BLE2902, const string& GATT_Format) {
   BLECharacteristicInfoForHandler info;
   info.service_UUID = serviceUUID;
   info.characteristic_UUID = characteristic_UUID;
