@@ -161,7 +161,8 @@ def to_code_characteristic(ble_controller_var, service_uuid, characteristic_desc
     component_id = characteristic_description[CONF_EXPOSES_COMPONENT]
     component = yield cg.get_variable(component_id)
     use_BLE2902 = characteristic_description[CONF_BLE_USE_2902]
-    cg.add(ble_controller_var.register_component(component, service_uuid, characteristic_uuid, use_BLE2902))
+    GITT_Format = characteristic_description[CONF_GITT_FORMAT]
+    cg.add(ble_controller_var.register_component(component, service_uuid, characteristic_uuid, use_BLE2902, GITT_Format))
     
 @coroutine
 def to_code_service(ble_controller_var, service):
