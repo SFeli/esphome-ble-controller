@@ -387,7 +387,7 @@ void ESP32BLEController::send_command_result(const char* format, ...) {
   void ESP32BLEController::on_light_update(light::LightState *obj) {}
 #endif
 #ifdef USE_SENSOR
-  void ESP32BLEController::on_sensor_update(sensor::Sensor *component, int16 state) { update_component_state(component, state); }
+  void ESP32BLEController::on_sensor_update(sensor::Sensor *component, float state) { update_component_state(component, state); }
 #endif
 #ifdef USE_SWITCH
   void ESP32BLEController::on_switch_update(switch_::Switch *obj, bool state) { update_component_state(obj, state); }
