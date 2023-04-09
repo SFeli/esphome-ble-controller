@@ -30,7 +30,7 @@ void ESP32BLEController::register_component(EntityBase* component, const string&
   info.service_UUID = serviceUUID;
   info.characteristic_UUID = characteristic_UUID;
   info.use_BLE2902 = use_BLE2902;
-  info.GATT_Format = "123";
+  info.GATT_Format = GATT_Format;
 
   info_for_component[component->get_object_id()] = info;
 }
