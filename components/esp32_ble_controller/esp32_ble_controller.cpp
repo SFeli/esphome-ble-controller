@@ -256,7 +256,7 @@ void ESP32BLEController::register_state_change_callbacks_and_send_initial_states
 #ifdef USE_SENSOR
   for (auto *obj : App.get_sensors()) {
     if (info_for_component.count(obj->get_object_id())) {
-      obj->add_on_state_callback([this, obj](int16 state) { this->on_sensor_update(obj, state); });
+      obj->add_on_state_callback([this, obj](float state) { this->on_sensor_update(obj, state); });
       if (obj->has_state())
         update_component_state(obj, obj->state);
     }
