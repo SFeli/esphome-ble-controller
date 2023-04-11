@@ -59,7 +59,7 @@ void BLEComponentHandlerBase::send_value(float value) {
      temp = (int)(value * 10);
      characteristic->setValue(temp);
   } else if (0 == strcmp(GATT_Format.c_str(), "8_0")) {
-     uint8_t temp[2];
+     int temp[2];
      temp[0] = value;
 //     temp[1] = value >> 8;
      characteristic->setValue(temp);
