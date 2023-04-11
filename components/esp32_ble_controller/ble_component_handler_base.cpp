@@ -62,7 +62,7 @@ void BLEComponentHandlerBase::send_value(float value) {
      int temp[2];
      temp[0] = value;
 //     temp[1] = value >> 8;
-     characteristic->setValue(temp);
+     characteristic->setValue(temp, 2);
   } else {
      characteristic->setValue(value);
   }
