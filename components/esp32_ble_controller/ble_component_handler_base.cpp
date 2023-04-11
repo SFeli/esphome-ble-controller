@@ -54,6 +54,12 @@ void BLEComponentHandlerBase::send_value(float value) {
      uint16_t temp;
      temp = (int)(value * 100);
      characteristic->setValue(temp);
+   } else if (0 == strcmp(GATT_Format.c_str(), "16_1")) {
+     uint16_t data16 = value * 10;
+     uint8_t temp[2];
+     temp[0] = data16;
+     temp[1] = data16 >> 8;
+     characteristic->setValue(temp, 2);
   } else if (0 == strcmp(GATT_Format.c_str(), "32_1")) {
      uint32_t temp;
      temp = (int)(value * 10);
@@ -62,7 +68,7 @@ void BLEComponentHandlerBase::send_value(float value) {
      uint8_t temp[2];
      temp[0] = value;
 //     temp[1] = value >> 8;
-     characteristic->setValue(temp, 2);
+     characteristic->setValue(temp, 1);
   } else {
      characteristic->setValue(value);
   }
