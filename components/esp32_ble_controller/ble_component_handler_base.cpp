@@ -50,24 +50,49 @@ void BLEComponentHandlerBase::send_value(float value) {
   const string& characteristic_UUID = characteristic_info.characteristic_UUID;
   const string& GATT_Format = characteristic_info.GATT_Format;
   ESP_LOGD(TAG, "SF2_Char_UUID: %s with Format: %s", characteristic_UUID.c_str(), GATT_Format.c_str());
-  if (0 == strcmp(GATT_Format.c_str(), "16_2")) {
-     uint16_t temp;
-     temp = (int)(value * 100);
-     characteristic->setValue(temp);
-   } else if (0 == strcmp(GATT_Format.c_str(), "16_1")) {
+  if (0 == strcmp(GATT_Format.c_str(), "16_0")) {
+     uint16_t data16 = value
+     uint8_t temp[2];
+     temp[0] = data16;
+     temp[1] = data16 >> 8;
+     characteristic->setValue(temp, 2);
+  } else if (0 == strcmp(GATT_Format.c_str(), "16_1")) {
      uint16_t data16 = value * 10;
      uint8_t temp[2];
      temp[0] = data16;
      temp[1] = data16 >> 8;
      characteristic->setValue(temp, 2);
-  } else if (0 == strcmp(GATT_Format.c_str(), "32_1")) {
-     uint32_t temp;
-     temp = (int)(value * 10);
-     characteristic->setValue(temp);
-  } else if (0 == strcmp(GATT_Format.c_str(), "8_0")) {
+  } else if (0 == strcmp(GATT_Format.c_str(), "16_2")) {
+     uint16_t data16 = value * 100;
      uint8_t temp[2];
-     temp[0] = value;
-//     temp[1] = value >> 8;
+     temp[0] = data16;
+     temp[1] = data16 >> 8;
+     characteristic->setValue(temp, 2);
+  } else if (0 == strcmp(GATT_Format.c_str(), "32_0")) {
+     uint32_t data32 = value;
+     uint8_t temp[4];
+     temp[0] = data32;
+     temp[1] = data32 >> 8;
+     temp[2] = data32 >> 16;
+     temp[3] = data32 >> 24;
+     characteristic->setValue(temp, 4);
+  } else if (0 == strcmp(GATT_Format.c_str(), "32_1")) {
+     uint32_t data32 = value * 10;
+     uint8_t temp[4];
+     temp[0] = data32;
+     temp[1] = data32 >> 8;
+     temp[2] = data32 >> 16;
+     temp[3] = data32 >> 24;
+     characteristic->setValue(temp, 4);
+  } else if (0 == strcmp(GATT_Format.c_str(), "8_0")) {
+     uint8_t data8 = value;
+     uint8_t temp[1];
+     temp[0] = data8;
+     characteristic->setValue(temp, 1);
+   } else if (0 == strcmp(GATT_Format.c_str(), "8_1")) {
+     uint8_t data8 = value * 10;
+     uint8_t temp[1];
+     temp[0] = data8;
      characteristic->setValue(temp, 1);
   } else {
      characteristic->setValue(value);
