@@ -51,7 +51,7 @@ void BLEComponentHandlerBase::send_value(float value) {
   const string& GATT_Format = characteristic_info.GATT_Format;
   ESP_LOGD(TAG, "SF2_Char_UUID: %s with Format: %s", characteristic_UUID.c_str(), GATT_Format.c_str());
   if (0 == strcmp(GATT_Format.c_str(), "16_0")) {
-     uint16_t data16 = value
+     uint16_t data16 = value;
      uint8_t temp[2];
      temp[0] = data16;
      temp[1] = data16 >> 8;
