@@ -46,11 +46,10 @@ void BLEComponentHandlerBase::setup(BLEServer* ble_server) {
 
 void BLEComponentHandlerBase::send_value(float value) {
   const string& object_id = component->get_object_id();
-  ESP_LOGD(TAG, "SF1_Update component %s to %f", object_id.c_str(), value);
+  ESP_LOGD(TAG, "SF1_Update component %s to Value: %f", object_id.c_str(), value);
   const string& characteristic_UUID = characteristic_info.characteristic_UUID;
-  ESP_LOGD(TAG, "SF2_Char_UUID %s", characteristic_UUID.c_str());  
   const string& GATT_Format = characteristic_info.GATT_Format;
-  ESP_LOGD(TAG, "SF3_Format %s", GATT_Format.c_str());
+  ESP_LOGD(TAG, "SF2_Char_UUID: %s with Format: %s", characteristic_UUID.c_str(), GATT_Format.c_str());
   if (0 == strcmp(GATT_Format.c_str(), "16_2")) {
      uint16_t temp;
      temp = (int)(value * 100);
@@ -58,6 +57,10 @@ void BLEComponentHandlerBase::send_value(float value) {
   } else if (0 == strcmp(GATT_Format.c_str(), "32_1")) {
      uint32_t temp;
      temp = (int)(value * 10);
+     characteristic->setValue(temp);
+   } else if (0 == strcmp(GATT_Format.c_str(), "8_0")) {
+     uint8_t temp;
+     temp = (int)(value);
      characteristic->setValue(temp);
   } else  
   characteristic->setValue(value);
